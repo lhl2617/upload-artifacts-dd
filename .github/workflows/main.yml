@@ -6,12 +6,24 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
+      - name: Get metadata
+        run: |
+          echo "==="
+          df -Th .
+          echo "==="
+          stat -f .
+          echo "==="
+          cat /etc/fstab
+          echo "==="
       - name: Make 1GB file with 1MB block
         run: | 
           mkdir folder
           dd if=/dev/zero of=folder/1g1Mbs.img count=1024 bs=1M
+          echo "==="
           ls -lR
+          echo "==="
           du -h .
+          echo "==="
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
@@ -19,13 +31,30 @@ jobs:
           path: folder
       - name: Clean
         run: rm -rf *
+      - name: Download artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: 1g1Mbs
+          path: folder
+      - name: Check file size
+        run: | 
+          echo "==="
+          ls -lR
+          echo "==="
+          du -h .
+          echo "==="
+      - name: Clean
+        run: rm -rf *
 
       - name: Make 1GB file with 2MB block
         run: | 
           mkdir folder
           dd if=/dev/zero of=folder/1g2Mbs.img count=512 bs=2M
+          echo "==="
           ls -lR
+          echo "==="
           du -h .
+          echo "==="
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
@@ -33,3 +62,18 @@ jobs:
           path: folder
       - name: Clean
         run: rm -rf *
+      - name: Download artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: 1g2Mbs
+          path: folder
+      - name: Check file size
+        run: | 
+          echo "==="
+          ls -lR
+          echo "==="
+          du -h .
+          echo "==="
+      - name: Clean
+        run: rm -rf *
+
