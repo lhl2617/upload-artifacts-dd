@@ -29,13 +29,12 @@ jobs:
         with:
           name: 1g1Mbs
           path: folder
-      - name: Clean folder
-        run: rm -rf folder/*
+      - name: Clean
+        run: rm -rf *
       - name: Download artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/download-artifact@v2
         with:
           name: 1g1Mbs
-          path: folder
       - name: Check file size
         run: | 
           echo "==="
@@ -60,13 +59,12 @@ jobs:
         with:
           name: 1g2Mbs
           path: folder
-      - name: Clean folder
-        run: rm -rf folder/*
+      - name: Clean
+        run: rm -rf *
       - name: Download artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/download-artifact@v2
         with:
           name: 1g2Mbs
-          path: folder
       - name: Check file size
         run: | 
           echo "==="
