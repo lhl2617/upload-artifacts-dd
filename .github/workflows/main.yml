@@ -18,7 +18,7 @@ jobs:
       - name: Make 1GB file with 1MB block
         run: | 
           mkdir folder
-          dd if=/dev/zero of=folder/1g1Mbs.img count=1024 bs=1M
+          dd if=/dev/urandom of=folder/1g1Mbs.img count=1024 bs=1M
           echo "==="
           ls -lR
           echo "==="
@@ -48,7 +48,7 @@ jobs:
       - name: Make 1GB file with 2MB block
         run: | 
           mkdir folder
-          dd if=/dev/zero of=folder/1g2Mbs.img count=512 bs=2M
+          dd if=/dev/urandom of=folder/1g2Mbs.img count=512 bs=2M
           echo "==="
           ls -lR
           echo "==="
